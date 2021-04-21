@@ -1,10 +1,10 @@
  // Functions 
-    function getWeather(zip, apiKey, successCallback) {
+    function getWeather(zip, apiKey, successCallback, units = 'imperial') {
         const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
-        fetch(path)
-          .then(res => res.json())
-          .then(json => successCallback(json))
-          .catch(err => console.log(err.message))
+        
+        const resPromise = fetch(path)
+        const jsonPromise = resPromise.then(res => res.json())
+        return jsonPromise
       }
 
       export {
