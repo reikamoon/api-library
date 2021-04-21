@@ -56,12 +56,9 @@
   </head>
   <body>
     <div class="container">
-      <h1 id="temp">
-        <p>Feels like: <span id="feels-like"> </span></p>
-      </h1>
-      <p id="desc">
-        <!-- description -->
-      </p>
+      <h1 id="temp">  </h1>
+      <p>Feels Like: <span id="feels-like"></span></p>
+      <p id="desc"> </p>
       <form id="form">
         <input 
           id="zip" 
@@ -75,7 +72,7 @@
     </div>
 
     <script type="module">
-    import { getWeather } from './src/index.js'
+    import { getWeatherByZip, getWeatherByCity, getWeatherByGeo } from './src/index.js'
       // ------------------------------------------------------
       // Developer Code
 
@@ -83,6 +80,7 @@
       const tempEl = document.getElementById('temp')
       const descEl = document.getElementById('desc')
       const formEl = document.getElementById('form')
+      const feelsLikeEl = document.getElementById('feels-like')
       const zipInput = document.getElementById('zip')
 
       // Define event listeners
@@ -91,10 +89,11 @@
         const zip = zipInput.value
         const apiKey = '467355df4c808dd6134a3b64e9ace282'
 
-        getWeather(zip, apiKey)
+        getWeatherByZip(apiKey, zip)
         .then((json) => {
           tempEl.innerHTML = json.temp
           descEl.innerHTML = json.description
+          feelsLikeEl.innerHTML = json.feels_like
         }).catch(err => console.log(err.message))
       })
 

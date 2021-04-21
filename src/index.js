@@ -4,7 +4,7 @@
         return getWeather(path)
     }
 
-    function getWeatherbyCity(apiKey, city, units='imperial') {
+    function getWeatherByCity(apiKey, city, units='imperial') {
         const path = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`
         return getWeather(path)
     }
@@ -15,7 +15,7 @@
     }
 
 
-    async function getWeather(zip, apiKey, units = 'imperial') {
+    async function getWeather(path) {
         try {
             const res = await fetch(path)
             const json = await res.json()
@@ -36,5 +36,7 @@
         }
 
       export {
-          getWeather
+          getWeatherByZip,
+          getWeatherByCity,
+          getWeatherByGeo
       }
